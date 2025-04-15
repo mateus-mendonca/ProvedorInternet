@@ -2,24 +2,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Plano {
-    private String codigo;
     private String nome;
     private String descricao;
     private float preco;
 
-    public Plano(String codigo, String nome, String descricao, float preco) {
-        this.codigo = codigo;
+    public Plano(String nome, String descricao, float preco) {
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
 
     public float getPreco() {
@@ -51,9 +41,12 @@ public class Plano {
         return nome + " - " + descricao + " - R$" + preco;
     }
 
+
+
+
     public static final List<Plano> planosPadrao = new ArrayList<>(List.of(
-            new Plano("01", "Plano Básico", "Internet 100Mbps", 79.90f),
-            new Plano("02", "Intermediário", "Internet 300Mbps", 99.90f),
-            new Plano("03", "Avançado", "Internet 600Mbps", 149.90f)
+            new Plano("Plano Básico", "Internet 100Mbps", 79.90f),
+            new Plano("Intermediário", "Internet 300Mbps", 99.90f),
+            new Plano("Avançado", "Internet 600Mbps", 149.90f)
     ));
 }

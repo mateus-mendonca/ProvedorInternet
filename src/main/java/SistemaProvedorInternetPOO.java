@@ -18,24 +18,26 @@ public class SistemaProvedorInternetPOO implements SistemaProvedorInternet {
     }
 
     @Override
-    public void cadastrarCliente(String nome, String cpf, String dataDeNascimento, Endereco endereco,
-                                 String telefone, Plano planos) {
-        Cliente cliente = new Cliente(nome, cpf, dataDeNascimento, endereco,
+    public void cadastrarCliente(String nome, String CPF, String dataDeNascimento, Endereco endereco,
+                                 String telefone, Plano planos) throws ClienteJaCadastradoException {
+        if (this.clienteMap.containsKey(CPF))
+            throw new ClienteJaCadastradoException("Cliente já cadastrado no sistema.");
+        Cliente cliente = new Cliente(nome, CPF, dataDeNascimento, endereco,
                 telefone, planos);
-        this.clienteMap.put(cpf, cliente);
+        this.clienteMap.put(CPF, cliente);
     }
 
     @Override
-    public void cadastrarPlano(String codigo, String nome, String descricao, float preco) {
-        Plano plano = new Plano(codigo, nome, descricao, preco);
+    public void cadastrarPlano(String nome, String descricao, float preco) {
+        Plano plano = new Plano(nome, descricao, preco);
         Plano.planosPadrao.add(plano);
     }
 
     @Override
-    public Cliente pesquisaCliente(String cpf) {
-        if (!clienteMap.containsKey(cpf))
-            return null;
-        return clienteMap.get(cpf);
+    public Cliente pesquisaCliente(String CPF) throws ClienteNaoExisteException {
+        if (!clienteMap.containsKey(CPF))
+            throw new ClienteNaoExisteException("Cliente não encontrado.");
+        return clienteMap.get(CPF);
     }
 
     @Override
@@ -48,23 +50,60 @@ public class SistemaProvedorInternetPOO implements SistemaProvedorInternet {
     }
 
     @Override
-    public void removerCliente(String cpf) {
-
+    public void removerCliente(String CPF) throws ClienteNaoExisteException{
+        if (!clienteMap.containsKey(CPF))
+            throw new ClienteNaoExisteException("Cliente não encontrado.");
+        this.clienteMap.remove(CPF);
     }
 
     @Override
-    public void alterarPlano(Plano planos) {
-
+    public void alterarNomePlano(String nome, String novoNome) {
+        for (Plano p : Plano.planosPadrao) {
+            if (p.getNome().equals(nome)) {
+                p.setNome(novoNome);
+            }
+        }
     }
 
     @Override
-    public void alterarPlanoCliente(String cpf, Plano planos) {
-
+    public void alterarDescPlano(String nome, String novaDescricao) {
+        for (Plano p : Plano.planosPadrao) {
+            if (p.getNome().equals(nome)) {
+                p.setDescricao(novaDescricao);
+            }
+        }
     }
 
     @Override
-    public void alteraDadosDoCliente(Endereco endereco, String telefone) {
+    public void alterarPrecoPlano(String nome, float novoPreco) {
+        for (Plano p : Plano.planosPadrao) {
+            if (p.getNome().equals(nome)) {
+                p.setPreco(novoPreco);
+            }
+        }
+    }
 
+    @Override
+    public void alterarPlanoCliente(String CPF, Plano novoPlano) {
+        for (Cliente c : clienteMap.values())
+            if (c.getCpf().equals(CPF))
+                c.setPlanos(novoPlano);
+    }
+
+    @Override
+    public void alteraEnderecoCliente(String CPF, Endereco endereco) {
+        for (Cliente c : clienteMap.values())
+            if (c.getCpf().equals(CPF)) {
+                c.setEndereco(endereco);
+            }
+    }
+
+    @Override
+    public void alteraTelefoneCliente(String CPF, String novoTelefone) {
+        for (Cliente c : clienteMap.values())
+            if (c.getCpf().equals(CPF)) {
+                c.setTelefone(novoTelefone);
+            }
     }
 
     @Override
