@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Plano {
+public class Plano implements Serializable {
     private String nome;
     private String descricao;
     private double preco;
@@ -38,15 +39,15 @@ public class Plano {
 
     @Override
     public String toString() {
-        return nome + " - " + descricao + " - R$" + preco;
+        return nome + " - " + descricao + " - R$ " + preco;
     }
 
 
 
 
     public static final List<Plano> planosPadrao = new ArrayList<>(List.of(
-            new Plano("Plano Básico", "Internet 100Mbps", 79.90f),
-            new Plano("Intermediário", "Internet 300Mbps", 99.90f),
-            new Plano("Avançado", "Internet 600Mbps", 149.90f)
+            new Plano("Plano Básico", "Internet 100Mbps", 79.90),
+            new Plano("Intermediário", "Internet 300Mbps", 99.90),
+            new Plano("Avançado", "Internet 600Mbps", 149.90)
     ));
 }

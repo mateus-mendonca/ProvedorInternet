@@ -8,7 +8,7 @@ public interface SistemaProvedorInternet {
 
     //PESQUISA
     Cliente pesquisaCliente(String cpf) throws ClienteNaoExisteException;
-    Collection<String> pesquisaTodosPlanos();
+    Collection<Plano> planosDisponiveis();
 
     //REMOÇÃO
     void removerCliente(String cpf) throws ClienteNaoExisteException;
@@ -23,7 +23,7 @@ public interface SistemaProvedorInternet {
     void alteraEnderecoCliente(String cpf, String endereco);
     void alteraTelefoneCliente(String cpf, String telefone);
 
-    void gerarPagamento();
+    void gerarPagamento(String escolhaPlano);
 
     void mostrarSituacaoDoCliente(String cpf) throws ClienteNaoExisteException;
 

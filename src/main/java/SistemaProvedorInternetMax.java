@@ -1,13 +1,17 @@
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
-public class SistemaProvedorInternetPOO implements SistemaProvedorInternet {
+public class SistemaProvedorInternetMax implements SistemaProvedorInternet {
     private GravadorDeDados gravadorDeDados;
     private Map<String, Cliente> clienteMap;
+
+    public SistemaProvedorInternetMax() {
+        this.clienteMap = new HashMap<>();
+        this.gravadorDeDados = new GravadorDeDados();
+    }
 
 
 
@@ -22,7 +26,6 @@ public class SistemaProvedorInternetPOO implements SistemaProvedorInternet {
             this.cadastrarCliente(c.getNome(), c.getCpf(), c.getDataDeNascimento(), c.getRg(), c.getNomePai(),
                     c.getNomeMae(), c.getEndereco(), c.getTelefone(), c.getPlanos());
         }
-
     }
 
     @Override
@@ -49,19 +52,20 @@ public class SistemaProvedorInternetPOO implements SistemaProvedorInternet {
     }
 
     @Override
-    public Collection<String> pesquisaTodosPlanos() {
-        Collection<String> planos = new ArrayList<>();
-        for (Plano p : Plano.planosPadrao) {
-            planos.add(p.toString());
-        }
-        return planos;
+    public Collection<Plano> planosDisponiveis() {
+        return Plano.planosPadrao;
+//        Collection<String> planos = new ArrayList<>();
+//        for (Plano p : Plano.planosPadrao) {
+//            planos.add(p.toString());
+//        }
+//        return planos;
     }
 
     @Override
-    public void removerCliente(String CPF) throws ClienteNaoExisteException{
-        if (!clienteMap.containsKey(CPF))
+    public void removerCliente(String cpf) throws ClienteNaoExisteException{
+        if (!clienteMap.containsKey(cpf))
             throw new ClienteNaoExisteException("Cliente não encontrado.");
-        this.clienteMap.remove(CPF);
+        this.clienteMap.remove(cpf);
     }
 
     @Override
@@ -115,8 +119,15 @@ public class SistemaProvedorInternetPOO implements SistemaProvedorInternet {
     }
 
     @Override
-    public void gerarPagamento() {
-
+    public void gerarPagamento(String escolhaPlano) {
+        for (Plano p : Plano.planosPadrao) {
+            if (p.getNome().equals(escolhaPlano)) {
+                System.out.println("O plano de sua escolha "+ p.getNome() +" custará R$ " + p.getPreco() + ". Envie o" +
+                        " " +
+                        "dinheiro para maxconnect@gmail.com e comece a desfrutar dos seus benefícios." +
+                        " ");
+            }
+        }
     }
 
     @Override
