@@ -76,4 +76,16 @@ public class Endereco {
     public int hashCode() {
         return Objects.hash(cep, rua, bairro, numero);
     }
+
+    @Override
+    public String toString() {
+        return "Endereco{" +
+                "estado='" + estado + '\'' +
+                ", cidade='" + cidade + '\'' +
+                ", cep='" + cep + '\'' +
+                ", rua='" + rua + '\'' +
+                ", bairro='" + bairro + '\'' +
+                ", numero=" + numero +
+                '}';
+    }
 }

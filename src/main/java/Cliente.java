@@ -4,14 +4,22 @@ public class Cliente {
     private String nome;
     private String cpf;
     private String dataDeNascimento;
-    private Endereco endereco;
+    private String rg;
+    private String nomePai;
+    private String nomeMae;
+    private String endereco;
     private String telefone;
     private Plano planos;
+    private boolean pagamentoEmDia;
 
-    public Cliente(String nome, String cpf, String dataDeNascimento, Endereco endereco, String telefone, Plano plano) {
+    public Cliente(String nome, String cpf, String dataDeNascimento, String rg, String nomePai,
+                   String nomeMae, String endereco, String telefone, Plano plano) {
         this.nome = nome;
         this.cpf = cpf;
         this.dataDeNascimento = dataDeNascimento;
+        this.rg = rg;
+        this.nomePai = nomePai;
+        this.nomeMae = nomeMae;
         this.endereco = endereco;
         this.telefone = telefone;
         this.planos = plano;
@@ -41,11 +49,35 @@ public class Cliente {
         this.dataDeNascimento = dataDeNascimento;
     }
 
-    public Endereco getEndereco() {
+    public String getRg() {
+        return rg;
+    }
+
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
+
+    public String getNomePai() {
+        return nomePai;
+    }
+
+    public void setNomePai(String nomePai) {
+        this.nomePai = nomePai;
+    }
+
+    public String getNomeMae() {
+        return nomeMae;
+    }
+
+    public void setNomeMae(String nomeMae) {
+        this.nomeMae = nomeMae;
+    }
+
+    public String getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(Endereco endereco) {
+    public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
 
@@ -63,6 +95,10 @@ public class Cliente {
 
     public void setPlanos(Plano planos) {
         this.planos = planos;
+    }
+
+    public boolean pagamentosEmDia() {
+        return pagamentoEmDia;
     }
 
     @Override

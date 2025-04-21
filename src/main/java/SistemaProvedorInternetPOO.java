@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -9,35 +11,41 @@ public class SistemaProvedorInternetPOO implements SistemaProvedorInternet {
 
 
 
-    public void gravarDados() {
+    public void gravarDados() throws IOException {
+        this.gravadorDeDados.gravaDados(this.clienteMap.values());
 
     }
 
-    public void recuperaDados() {
+    public void recuperaDados() throws IOException {
+        Collection<Cliente> clientesAchados = this.gravadorDeDados.recuperaDados();
+        for (Cliente c : clientesAchados) {
+            this.cadastrarCliente(c.getNome(), c.getCpf(), c.getDataDeNascimento(), c.getRg(), c.getNomePai(),
+                    c.getNomeMae(), c.getEndereco(), c.getTelefone(), c.getPlanos());
+        }
 
     }
 
     @Override
-    public void cadastrarCliente(String nome, String CPF, String dataDeNascimento, Endereco endereco,
-                                 String telefone, Plano planos) throws ClienteJaCadastradoException {
-        if (this.clienteMap.containsKey(CPF))
+    public void cadastrarCliente(String nome, String cpf, String dataDeNascimento, String rg, String nomePai,
+                                 String nomeMae, String endereco, String telefone, Plano plano) throws ClienteJaCadastradoException {
+        if (this.clienteMap.containsKey(cpf))
             throw new ClienteJaCadastradoException("Cliente já cadastrado no sistema.");
-        Cliente cliente = new Cliente(nome, CPF, dataDeNascimento, endereco,
-                telefone, planos);
-        this.clienteMap.put(CPF, cliente);
+        Cliente cliente = new Cliente(nome, cpf, dataDeNascimento, rg, nomePai, nomeMae, endereco,
+                telefone, plano);
+        this.clienteMap.put(cpf, cliente);
     }
 
     @Override
-    public void cadastrarPlano(String nome, String descricao, float preco) {
+    public void cadastrarPlano(String nome, String descricao, double preco) {
         Plano plano = new Plano(nome, descricao, preco);
         Plano.planosPadrao.add(plano);
     }
 
     @Override
-    public Cliente pesquisaCliente(String CPF) throws ClienteNaoExisteException {
-        if (!clienteMap.containsKey(CPF))
+    public Cliente pesquisaCliente(String cpf) throws ClienteNaoExisteException {
+        if (!clienteMap.containsKey(cpf))
             throw new ClienteNaoExisteException("Cliente não encontrado.");
-        return clienteMap.get(CPF);
+        return clienteMap.get(cpf);
     }
 
     @Override
@@ -75,7 +83,7 @@ public class SistemaProvedorInternetPOO implements SistemaProvedorInternet {
     }
 
     @Override
-    public void alterarPrecoPlano(String nome, float novoPreco) {
+    public void alterarPrecoPlano(String nome, double novoPreco) {
         for (Plano p : Plano.planosPadrao) {
             if (p.getNome().equals(nome)) {
                 p.setPreco(novoPreco);
@@ -91,10 +99,10 @@ public class SistemaProvedorInternetPOO implements SistemaProvedorInternet {
     }
 
     @Override
-    public void alteraEnderecoCliente(String CPF, Endereco endereco) {
+    public void alteraEnderecoCliente(String CPF, String novoEndereco) {
         for (Cliente c : clienteMap.values())
             if (c.getCpf().equals(CPF)) {
-                c.setEndereco(endereco);
+                c.setEndereco(novoEndereco);
             }
     }
 
@@ -112,17 +120,16 @@ public class SistemaProvedorInternetPOO implements SistemaProvedorInternet {
     }
 
     @Override
-    public void renovarIP(String ip) {
+    public void mostrarSituacaoDoCliente(String cpf) throws ClienteNaoExisteException {
+        Cliente cliente = this.clienteMap.get(cpf);
+        if (!this.clienteMap.containsKey(cpf))
+            throw new ClienteNaoExisteException("Cliente não encontrado.");
+        System.out.println("----- Situação do Cliente -----");
+        System.out.println("Nome: " + this.clienteMap.get(cpf).getNome());
+        System.out.println("CPF: " + this.clienteMap.get(cpf).getCpf());
 
-    }
-
-    @Override
-    public void cadastrarOcorrencia(String ocorrencia) {
-
-    }
-
-    @Override
-    public String mostrarSituacaoDoCliente(String cpf) {
-        return "";
+        String statusPagamento = cliente.pagamentosEmDia() ? "Em dia" : "Em atraso";
+        System.out.println("Pagamento: " + statusPagamento);
+        System.out.println("---------------------------------\n");
     }
 }

@@ -4,19 +4,19 @@ import java.util.List;
 public class Plano {
     private String nome;
     private String descricao;
-    private float preco;
+    private double preco;
 
-    public Plano(String nome, String descricao, float preco) {
+    public Plano(String nome, String descricao, double preco) {
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
     }
 
-    public float getPreco() {
+    public double getPreco() {
         return preco;
     }
 
-    public void setPreco(float preco) {
+    public void setPreco(double preco) {
         this.preco = preco;
     }
 
