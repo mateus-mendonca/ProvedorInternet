@@ -10,8 +10,7 @@ public class Cliente implements Serializable {
     private String nomeMae;
     private String endereco;
     private String telefone;
-    private Plano planos;
-    private boolean pagamentoEmDia;
+    private Plano plano;
 
     public Cliente(String nome, String cpf, String dataDeNascimento, String rg, String nomePai,
                    String nomeMae, String endereco, String telefone, Plano plano) {
@@ -23,7 +22,7 @@ public class Cliente implements Serializable {
         this.nomeMae = nomeMae;
         this.endereco = endereco;
         this.telefone = telefone;
-        this.planos = plano;
+        this.plano = plano;
     }
 
     public String getNome() {
@@ -90,16 +89,27 @@ public class Cliente implements Serializable {
         this.telefone = telefone;
     }
 
-    public Plano getPlanos() {
-        return planos;
+    public Plano getPlano() {
+        return plano;
     }
 
-    public void setPlanos(Plano planos) {
-        this.planos = planos;
+    public void setPlano(Plano plano) {
+        this.plano = plano;
     }
 
-    public boolean pagamentosEmDia() {
-        return pagamentoEmDia;
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", dataDeNascimento='" + dataDeNascimento + '\'' +
+                ", rg='" + rg + '\'' +
+                ", nomePai='" + nomePai + '\'' +
+                ", nomeMae='" + nomeMae + '\'' +
+                ", endereco='" + endereco + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", plano=" + plano +
+                '}';
     }
 
     @Override

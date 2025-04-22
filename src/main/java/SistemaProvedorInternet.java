@@ -2,8 +2,7 @@ import java.util.Collection;
 
 public interface SistemaProvedorInternet {
     //CADASTROS
-    void cadastrarCliente(String nome, String cpf, String dataDeNascimento, String rg, String nomePai,
-                          String nomeMae, String endereco, String telefone, Plano plano) throws ClienteJaCadastradoException;
+    void cadastrarCliente(Cliente cliente) throws ClienteJaCadastradoException;
     void cadastrarPlano(String nome, String descricao, double preco);
 
     //PESQUISA

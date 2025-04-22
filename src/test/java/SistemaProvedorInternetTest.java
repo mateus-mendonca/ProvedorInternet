@@ -25,8 +25,9 @@ public class SistemaProvedorInternetTest {
     @Test
     void testCadastraEPesquisaCliente() {
         try {
-            sistema.cadastrarCliente("Mateus", "99999999999", "10/07/2005", "999999999", "Helio",
+            Cliente c = new Cliente("Mateus", "99999999999", "10/07/2005", "999999999", "Helio",
                     "Osmarina", "a", "83 9999-9999", Plano.planosPadrao.get(0));
+            sistema.cadastrarCliente(c);
             Cliente a = sistema.pesquisaCliente("99999999999");
             assertEquals("Mateus", a.getNome());
             assertEquals("99999999999", a.getCpf());
@@ -44,8 +45,9 @@ public class SistemaProvedorInternetTest {
     @Test
     void testMostrarSituacaoDoCliente() {
         try {
-            sistema.cadastrarCliente("Mateus", "99999999999", "10/07/2005", "999999999", "Helio",
+            Cliente c = new Cliente("Mateus", "99999999999", "10/07/2005", "999999999", "Helio",
                     "Osmarina", "a", "83 9999-9999", Plano.planosPadrao.get(0));
+            sistema.cadastrarCliente(c);
             Cliente a = sistema.pesquisaCliente("99999999999");
             sistema.mostrarSituacaoDoCliente("99999999999");
 
@@ -56,8 +58,23 @@ public class SistemaProvedorInternetTest {
 
     @Test
     void testGerarPagamento() {
-        sistema.gerarPagamento("Intermediário");
+        sistema.gerarPagamento("Plano Intermediário");
         assertTrue(Plano.planosPadrao.get(1).getPreco() == 99.9);
 
+    }
+
+    @Test
+    void testAlterarNomePlano() {
+        sistema.alterarNomePlano("Plano Básico", "Plano Padrão");
+        assertEquals("Plano Padrão", Plano.planosPadrao.get(0).getNome());
+    }
+
+    @Test
+    void testAlterarPlanoCliente() {
+        Cliente c = new Cliente("Mateus", "99999999999", "10/07/2005", "999999999", "Helio",
+                "Osmarina", "a", "83 9999-9999", Plano.planosPadrao.get(0));
+        sistema.cadastrarCliente(c);
+        sistema.alterarPlanoCliente("99999999999", Plano.planosPadrao.get(2));
+        assertEquals(Plano.planosPadrao.get(2), c.getPlano());
     }
 }

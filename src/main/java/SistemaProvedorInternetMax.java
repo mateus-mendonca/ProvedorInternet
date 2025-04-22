@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,19 +22,18 @@ public class SistemaProvedorInternetMax implements SistemaProvedorInternet {
     public void recuperaDados() throws IOException {
         Collection<Cliente> clientesAchados = this.gravadorDeDados.recuperaDados();
         for (Cliente c : clientesAchados) {
-            this.cadastrarCliente(c.getNome(), c.getCpf(), c.getDataDeNascimento(), c.getRg(), c.getNomePai(),
-                    c.getNomeMae(), c.getEndereco(), c.getTelefone(), c.getPlanos());
+            this.cadastrarCliente(c);
         }
     }
 
     @Override
-    public void cadastrarCliente(String nome, String cpf, String dataDeNascimento, String rg, String nomePai,
-                                 String nomeMae, String endereco, String telefone, Plano plano) throws ClienteJaCadastradoException {
-        if (this.clienteMap.containsKey(cpf))
+    public void cadastrarCliente(Cliente cliente) throws ClienteJaCadastradoException {
+        if (this.clienteMap.containsKey(cliente.getCpf()))
             throw new ClienteJaCadastradoException("Cliente já cadastrado no sistema.");
-        Cliente cliente = new Cliente(nome, cpf, dataDeNascimento, rg, nomePai, nomeMae, endereco,
-                telefone, plano);
-        this.clienteMap.put(cpf, cliente);
+//        Cliente cliente = new Cliente(nome, cpf, dataDeNascimento, rg, nomePai, nomeMae, endereco,
+//                telefone, plano);
+//        this.clienteMap.put(cpf, cliente);
+        clienteMap.put(cliente.getCpf(), cliente);
     }
 
     @Override
@@ -96,16 +94,23 @@ public class SistemaProvedorInternetMax implements SistemaProvedorInternet {
     }
 
     @Override
-    public void alterarPlanoCliente(String CPF, Plano novoPlano) {
-        for (Cliente c : clienteMap.values())
-            if (c.getCpf().equals(CPF))
-                c.setPlanos(novoPlano);
+    public void alterarPlanoCliente(String cpf, Plano novoPlano) {
+        clienteMap.values().stream()
+                .filter(c -> c.getCpf().equals(cpf))
+                .findFirst()
+                .ifPresent(c -> c.setPlano(novoPlano));
     }
+//        for (Cliente c : clienteMap.values())
+//            if (c.getCpf().equals(cpf)) {
+//                c.setPlano(novoPlano);
+//                break;
+//            }
+//    }
 
     @Override
-    public void alteraEnderecoCliente(String CPF, String novoEndereco) {
+    public void alteraEnderecoCliente(String cpf, String novoEndereco) {
         for (Cliente c : clienteMap.values())
-            if (c.getCpf().equals(CPF)) {
+            if (c.getCpf().equals(cpf)) {
                 c.setEndereco(novoEndereco);
             }
     }
@@ -138,9 +143,10 @@ public class SistemaProvedorInternetMax implements SistemaProvedorInternet {
         System.out.println("----- Situação do Cliente -----");
         System.out.println("Nome: " + this.clienteMap.get(cpf).getNome());
         System.out.println("CPF: " + this.clienteMap.get(cpf).getCpf());
-
-        String statusPagamento = cliente.pagamentosEmDia() ? "Em dia" : "Em atraso";
-        System.out.println("Pagamento: " + statusPagamento);
-        System.out.println("---------------------------------\n");
+        System.out.println("Plano: " + this.clienteMap.get(cpf).getPlano());
+//
+//        String statusPagamento = cliente.pagamentosEmDia() ? "Em dia" : "Em atraso";
+//        System.out.println("Pagamento: " + statusPagamento);
+//        System.out.println("---------------------------------\n");
     }
 }
