@@ -48,8 +48,8 @@ public class Plano implements Serializable {
 
 
     public static final List<Plano> planosPadrao = new ArrayList<>(List.of(
-            new Plano("br.ufpb.dcx.Mateus.Plano Básico", "Internet 100Mbps", 79.90),
-            new Plano("br.ufpb.dcx.Mateus.Plano Intermediário", "Internet 300Mbps", 99.90),
-            new Plano("br.ufpb.dcx.Mateus.Plano Avançado", "Internet 600Mbps", 149.90)
+            new Plano("Plano Básico", "Internet 100Mbps", 79.90),
+            new Plano("Plano Intermediário", "Internet 300Mbps", 99.90),
+            new Plano("Plano Avançado", "Internet 600Mbps", 149.90)
     ));
 }

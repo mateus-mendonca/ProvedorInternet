@@ -5,9 +5,12 @@
 package Gui.br.com.servidor.projetologin;
 
 import Gui.br.com.servidor.projetologin.ActionListeners.CadastrarCliente;
-import br.ufpb.dcx.Mateus.Cliente;
-import br.ufpb.dcx.Mateus.SistemaProvedorInternet;
-import br.ufpb.dcx.Mateus.SistemaProvedorInternetMax;
+import Gui.br.com.servidor.projetologin.ActionListeners.PesquisarCliente;
+import Gui.br.com.servidor.projetologin.ActionListeners.SalvarDadosCliente;
+import br.ufpb.dcx.Mateus.*;
+
+import javax.swing.*;
+import java.io.IOException;
 
 /**
  *
@@ -32,6 +35,12 @@ public class TelaPrinc extends javax.swing.JFrame {
     private void initComponents() {
 
         SistemaProvedorInternetMax sistema = new SistemaProvedorInternetMax();
+        try {
+            sistema.recuperaDados();
+            JOptionPane.showMessageDialog(this, "Dados recuperados.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         jPanel1 = new javax.swing.JPanel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
@@ -53,6 +62,8 @@ public class TelaPrinc extends javax.swing.JFrame {
         jMenuItem12 = new javax.swing.JMenuItem();
         MenuSobre = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
+        JMenuItem salvarDados = new javax.swing.JMenuItem();
+//        recuperaDados = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,10 +98,10 @@ public class TelaPrinc extends javax.swing.JFrame {
         MenuCliente.setText("Cliente");
 
         jMenuItem1.setText("Cadastrar");
-//        jMenuItem1.addActionListener(new CadastrarCliente(sistema, this));
+        jMenuItem1.addActionListener(new CadastrarCliente(sistema, this));
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+//                jMenuItem1ActionPerformed(evt);
             }
         });
         MenuCliente.add(jMenuItem1);
@@ -98,22 +109,25 @@ public class TelaPrinc extends javax.swing.JFrame {
         jMenuItem2.setText("Alterar");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+//                jMenuItem2ActionPerformed(evt);
             }
         });
         MenuCliente.add(jMenuItem2);
 
         jMenuItem3.setText("Pesquisar");
+        jMenuItem3.addActionListener(new PesquisarCliente(sistema, this));
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+//                jMenuItem3ActionPerformed(evt);
             }
         });
         MenuCliente.add(jMenuItem3);
 
         jMenuItem4.setText("Remover");
         MenuCliente.add(jMenuItem4);
-
+        salvarDados.setText("Salvar dados do cliente.");
+        salvarDados.addActionListener(new SalvarDadosCliente(sistema, this));
+        MenuCliente.add(salvarDados);
         jMenuBar1.add(MenuCliente);
 
         MenuPlano.setText("Plano");
@@ -121,7 +135,7 @@ public class TelaPrinc extends javax.swing.JFrame {
         jMenuItem5.setText("Cadastrar");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+//                jMenuItem5ActionPerformed(evt);
             }
         });
         MenuPlano.add(jMenuItem5);
@@ -129,12 +143,13 @@ public class TelaPrinc extends javax.swing.JFrame {
         jMenuItem6.setText("Pesquisar");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+//                jMenuItem6ActionPerformed(evt);
             }
         });
         MenuPlano.add(jMenuItem6);
 
         jMenuItem7.setText("Alterar");
+
         MenuPlano.add(jMenuItem7);
 
         jMenuBar1.add(MenuPlano);
@@ -142,6 +157,7 @@ public class TelaPrinc extends javax.swing.JFrame {
         MenuEstoque.setText("Estoque");
 
         jMenuItem8.setText("Cadastrar");
+
         MenuEstoque.add(jMenuItem8);
 
         jMenuItem9.setText("Pesquisar");
@@ -158,11 +174,7 @@ public class TelaPrinc extends javax.swing.JFrame {
         MenuSobre.setText("Sobre");
 
         jMenuItem11.setText("Sair");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
-            }
-        });
+//        jMenuItem11.addActionListener(new );
         MenuSobre.add(jMenuItem11);
 
         jMenuBar1.add(MenuSobre);
@@ -181,42 +193,10 @@ public class TelaPrinc extends javax.swing.JFrame {
         );
 
         pack();
+
+
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // Botão de cadastra cliente e mostrar na tela principal
-        TelaCadastroCliente telaCadCli = new TelaCadastroCliente();
-        jLayeredPane1.add(telaCadCli);
-        telaCadCli.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // Botão de cadastra Planos e mostrar na tela principal
-        TelaCadastroPlano telaCadPlano = new TelaCadastroPlano();
-        jLayeredPane1.add(telaCadPlano);
-        telaCadPlano.setVisible(true);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
-
-    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        // Botão  Sistema - sair
-        System.exit(0);
-    }//GEN-LAST:event_jMenuItem11ActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // Botão de pesquisa cliente e mostrar na tela principal
-        TelaPesquisaCliente telaPesqCli = new TelaPesquisaCliente();
-        jLayeredPane1.add(telaPesqCli);
-        telaPesqCli.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,3 +256,12 @@ public class TelaPrinc extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
+
+//               try {
+//Cliente c = new Cliente(jLabel2.getText(), jLabel3.getText(), jLabel4.getText(), jLabel5.getText(),
+//        jLabel6.getText(), jLabel7.getText(), jLabel10.getText(), jLabel11.getText(), Plano.planosPadrao.get(jLabel12.getText()));
+//                    sistema.cadastrarCliente(c);
+//                } catch (
+//ClienteJaCadastradoException e) {
+//        JOptionPane.showMessageDialog();
+//                }

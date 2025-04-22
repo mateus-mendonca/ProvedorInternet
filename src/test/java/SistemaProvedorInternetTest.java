@@ -59,15 +59,15 @@ public class SistemaProvedorInternetTest {
 
     @Test
     void testGerarPagamento() {
-        sistema.gerarPagamento("br.ufpb.dcx.Mateus.Plano Intermediário");
+        sistema.gerarPagamento("Plano Intermediário");
         assertTrue(Plano.planosPadrao.get(1).getPreco() == 99.9);
 
     }
 
     @Test
     void testAlterarNomePlano() {
-        sistema.alterarNomePlano("br.ufpb.dcx.Mateus.Plano Básico", "br.ufpb.dcx.Mateus.Plano Padrão");
-        assertEquals("br.ufpb.dcx.Mateus.Plano Padrão", Plano.planosPadrao.get(0).getNome());
+        sistema.alterarNomePlano("Plano Básico", "Plano Padrão");
+        assertEquals("Plano Padrão", Plano.planosPadrao.get(0).getNome());
     }
 
     @Test

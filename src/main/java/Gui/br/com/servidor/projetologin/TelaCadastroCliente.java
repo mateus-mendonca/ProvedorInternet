@@ -10,6 +10,8 @@ import br.ufpb.dcx.Mateus.Plano;
 import br.ufpb.dcx.Mateus.SistemaProvedorInternetMax;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -93,13 +95,6 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
-                try {
-                    Cliente c = new Cliente(jLabel2.getText(), jLabel3.getText(), jLabel4.getText(), jLabel5.getText(),
-                            jLabel6.getText(), jLabel7.getText(), jLabel10.getText(), jLabel11.getText(), Plano.planosPadrao.get(jLabel12.getText()));
-                    sistema.cadastrarCliente(c);
-                } catch (ClienteJaCadastradoException e) {
-                    JOptionPane.showMessageDialog();
-                }
             }
         });
 
@@ -277,5 +272,7 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+
+
     // End of variables declaration//GEN-END:variables
 }

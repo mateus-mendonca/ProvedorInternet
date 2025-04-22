@@ -8,10 +8,10 @@ import java.util.List;
 public class TestaGravador {
     public static void main(String[] args) {
 
-//        br.ufpb.dcx.Mateus.Cliente c1 = new br.ufpb.dcx.Mateus.Cliente("Nome", "11111111111", "01/01/2001", "111111111", "Nome Pai", "Nome Mãe", "Endereço"
-//                , "11 11111111", br.ufpb.dcx.Mateus.Plano.planosPadrao.get(1));
+        Cliente c1 = new br.ufpb.dcx.Mateus.Cliente("Nome", "11111111111", "01/01/2001", "111111111", "Nome Pai", "Nome Mãe", "Endereço"
+                , "11 11111111", Plano.planosPadrao.get(1));
         List<Cliente> clientes = new LinkedList<>();
-//        clientes.add(c1);
+        clientes.add(c1);
 
         GravadorDeDados gravadorDeDados = new GravadorDeDados();
         System.out.println("Recuperando dados do cliente:");

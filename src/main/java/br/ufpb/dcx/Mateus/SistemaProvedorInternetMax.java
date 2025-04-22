@@ -31,7 +31,7 @@ public class SistemaProvedorInternetMax implements SistemaProvedorInternet {
     @Override
     public void cadastrarCliente(Cliente cliente) throws ClienteJaCadastradoException {
         if (this.clienteMap.containsKey(cliente.getCpf()))
-            throw new ClienteJaCadastradoException("br.ufpb.dcx.Mateus.Cliente já cadastrado no sistema.");
+            throw new ClienteJaCadastradoException("Cliente já cadastrado no sistema.");
 //        br.ufpb.dcx.Mateus.Cliente cliente = new br.ufpb.dcx.Mateus.Cliente(nome, cpf, dataDeNascimento, rg, nomePai, nomeMae, endereco,
 //                telefone, plano);
 //        this.clienteMap.put(cpf, cliente);
@@ -47,7 +47,7 @@ public class SistemaProvedorInternetMax implements SistemaProvedorInternet {
     @Override
     public Cliente pesquisaCliente(String cpf) throws ClienteNaoExisteException {
         if (!clienteMap.containsKey(cpf))
-            throw new ClienteNaoExisteException("br.ufpb.dcx.Mateus.Cliente não encontrado.");
+            throw new ClienteNaoExisteException("Cliente não encontrado.");
         return clienteMap.get(cpf);
     }
 
@@ -64,7 +64,7 @@ public class SistemaProvedorInternetMax implements SistemaProvedorInternet {
     @Override
     public void removerCliente(String cpf) throws ClienteNaoExisteException{
         if (!clienteMap.containsKey(cpf))
-            throw new ClienteNaoExisteException("br.ufpb.dcx.Mateus.Cliente não encontrado.");
+            throw new ClienteNaoExisteException("Cliente não encontrado.");
         this.clienteMap.remove(cpf);
     }
 
@@ -141,11 +141,11 @@ public class SistemaProvedorInternetMax implements SistemaProvedorInternet {
     public void mostrarSituacaoDoCliente(String cpf) throws ClienteNaoExisteException {
         Cliente cliente = this.clienteMap.get(cpf);
         if (!this.clienteMap.containsKey(cpf))
-            throw new ClienteNaoExisteException("br.ufpb.dcx.Mateus.Cliente não encontrado.");
-        System.out.println("----- Situação do br.ufpb.dcx.Mateus.Cliente -----");
+            throw new ClienteNaoExisteException("Cliente não encontrado.");
+        System.out.println("----- Situação do Cliente -----");
         System.out.println("Nome: " + this.clienteMap.get(cpf).getNome());
         System.out.println("CPF: " + this.clienteMap.get(cpf).getCpf());
-        System.out.println("br.ufpb.dcx.Mateus.Plano: " + this.clienteMap.get(cpf).getPlano());
+        System.out.println("Plano: " + this.clienteMap.get(cpf).getPlano());
 //
 //        String statusPagamento = cliente.pagamentosEmDia() ? "Em dia" : "Em atraso";
 //        System.out.println("Pagamento: " + statusPagamento);
