@@ -1,3 +1,5 @@
+package br.ufpb.dcx.Mateus;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -99,7 +101,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "Cliente{" +
+        return "br.ufpb.dcx.Mateus.Cliente{" +
                 "nome='" + nome + '\'' +
                 ", cpf='" + cpf + '\'' +
                 ", dataDeNascimento='" + dataDeNascimento + '\'' +

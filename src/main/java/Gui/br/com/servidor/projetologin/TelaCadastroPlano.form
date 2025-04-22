@@ -115,12 +115,12 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Cadastrar Plano"/>
+            <Property name="text" type="java.lang.String" value="Cadastrar br.ufpb.dcx.Mateus.Plano"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nome do Plano:"/>
+            <Property name="text" type="java.lang.String" value="Nome do br.ufpb.dcx.Mateus.Plano:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">

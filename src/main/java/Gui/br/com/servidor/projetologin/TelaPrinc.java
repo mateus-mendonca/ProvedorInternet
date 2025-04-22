@@ -4,6 +4,11 @@
  */
 package Gui.br.com.servidor.projetologin;
 
+import Gui.br.com.servidor.projetologin.ActionListeners.CadastrarCliente;
+import br.ufpb.dcx.Mateus.Cliente;
+import br.ufpb.dcx.Mateus.SistemaProvedorInternet;
+import br.ufpb.dcx.Mateus.SistemaProvedorInternetMax;
+
 /**
  *
  * @author renil
@@ -25,6 +30,8 @@ public class TelaPrinc extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
+        SistemaProvedorInternetMax sistema = new SistemaProvedorInternetMax();
 
         jPanel1 = new javax.swing.JPanel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
@@ -49,7 +56,7 @@ public class TelaPrinc extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MaxConnectTela.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("imgs/MaxConnectTela.png")); // NOI18N
 
         jLayeredPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -80,6 +87,7 @@ public class TelaPrinc extends javax.swing.JFrame {
         MenuCliente.setText("Cliente");
 
         jMenuItem1.setText("Cadastrar");
+//        jMenuItem1.addActionListener(new CadastrarCliente(sistema, this));
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);

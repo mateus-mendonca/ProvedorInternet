@@ -6,7 +6,7 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="MenuCliente">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cliente"/>
+            <Property name="text" type="java.lang.String" value="br.ufpb.dcx.Mateus.Cliente"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
@@ -42,7 +42,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="MenuPlano">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Plano"/>
+            <Property name="text" type="java.lang.String" value="br.ufpb.dcx.Mateus.Plano"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">

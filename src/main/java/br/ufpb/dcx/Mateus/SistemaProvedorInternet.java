@@ -1,3 +1,5 @@
+package br.ufpb.dcx.Mateus;
+
 import java.util.Collection;
 
 public interface SistemaProvedorInternet {

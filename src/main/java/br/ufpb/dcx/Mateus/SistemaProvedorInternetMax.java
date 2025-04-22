@@ -1,3 +1,5 @@
+package br.ufpb.dcx.Mateus;
+
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
@@ -29,8 +31,8 @@ public class SistemaProvedorInternetMax implements SistemaProvedorInternet {
     @Override
     public void cadastrarCliente(Cliente cliente) throws ClienteJaCadastradoException {
         if (this.clienteMap.containsKey(cliente.getCpf()))
-            throw new ClienteJaCadastradoException("Cliente já cadastrado no sistema.");
-//        Cliente cliente = new Cliente(nome, cpf, dataDeNascimento, rg, nomePai, nomeMae, endereco,
+            throw new ClienteJaCadastradoException("br.ufpb.dcx.Mateus.Cliente já cadastrado no sistema.");
+//        br.ufpb.dcx.Mateus.Cliente cliente = new br.ufpb.dcx.Mateus.Cliente(nome, cpf, dataDeNascimento, rg, nomePai, nomeMae, endereco,
 //                telefone, plano);
 //        this.clienteMap.put(cpf, cliente);
         clienteMap.put(cliente.getCpf(), cliente);
@@ -45,7 +47,7 @@ public class SistemaProvedorInternetMax implements SistemaProvedorInternet {
     @Override
     public Cliente pesquisaCliente(String cpf) throws ClienteNaoExisteException {
         if (!clienteMap.containsKey(cpf))
-            throw new ClienteNaoExisteException("Cliente não encontrado.");
+            throw new ClienteNaoExisteException("br.ufpb.dcx.Mateus.Cliente não encontrado.");
         return clienteMap.get(cpf);
     }
 
@@ -53,7 +55,7 @@ public class SistemaProvedorInternetMax implements SistemaProvedorInternet {
     public Collection<Plano> planosDisponiveis() {
         return Plano.planosPadrao;
 //        Collection<String> planos = new ArrayList<>();
-//        for (Plano p : Plano.planosPadrao) {
+//        for (br.ufpb.dcx.Mateus.Plano p : br.ufpb.dcx.Mateus.Plano.planosPadrao) {
 //            planos.add(p.toString());
 //        }
 //        return planos;
@@ -62,7 +64,7 @@ public class SistemaProvedorInternetMax implements SistemaProvedorInternet {
     @Override
     public void removerCliente(String cpf) throws ClienteNaoExisteException{
         if (!clienteMap.containsKey(cpf))
-            throw new ClienteNaoExisteException("Cliente não encontrado.");
+            throw new ClienteNaoExisteException("br.ufpb.dcx.Mateus.Cliente não encontrado.");
         this.clienteMap.remove(cpf);
     }
 
@@ -100,7 +102,7 @@ public class SistemaProvedorInternetMax implements SistemaProvedorInternet {
                 .findFirst()
                 .ifPresent(c -> c.setPlano(novoPlano));
     }
-//        for (Cliente c : clienteMap.values())
+//        for (br.ufpb.dcx.Mateus.Cliente c : clienteMap.values())
 //            if (c.getCpf().equals(cpf)) {
 //                c.setPlano(novoPlano);
 //                break;
@@ -139,11 +141,11 @@ public class SistemaProvedorInternetMax implements SistemaProvedorInternet {
     public void mostrarSituacaoDoCliente(String cpf) throws ClienteNaoExisteException {
         Cliente cliente = this.clienteMap.get(cpf);
         if (!this.clienteMap.containsKey(cpf))
-            throw new ClienteNaoExisteException("Cliente não encontrado.");
-        System.out.println("----- Situação do Cliente -----");
+            throw new ClienteNaoExisteException("br.ufpb.dcx.Mateus.Cliente não encontrado.");
+        System.out.println("----- Situação do br.ufpb.dcx.Mateus.Cliente -----");
         System.out.println("Nome: " + this.clienteMap.get(cpf).getNome());
         System.out.println("CPF: " + this.clienteMap.get(cpf).getCpf());
-        System.out.println("Plano: " + this.clienteMap.get(cpf).getPlano());
+        System.out.println("br.ufpb.dcx.Mateus.Plano: " + this.clienteMap.get(cpf).getPlano());
 //
 //        String statusPagamento = cliente.pagamentosEmDia() ? "Em dia" : "Em atraso";
 //        System.out.println("Pagamento: " + statusPagamento);

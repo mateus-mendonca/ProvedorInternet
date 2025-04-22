@@ -4,6 +4,13 @@
  */
 package Gui.br.com.servidor.projetologin;
 
+import br.ufpb.dcx.Mateus.Cliente;
+import br.ufpb.dcx.Mateus.ClienteJaCadastradoException;
+import br.ufpb.dcx.Mateus.Plano;
+import br.ufpb.dcx.Mateus.SistemaProvedorInternetMax;
+
+import javax.swing.*;
+
 /**
  *
  * @author renil
@@ -15,7 +22,10 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
      */
     public TelaCadastroCliente() {
         initComponents();
+
     }
+
+    SistemaProvedorInternetMax sistema = new SistemaProvedorInternetMax();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,7 +66,7 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
         setClosable(true);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setText("Dados do Cliente");
+        jLabel1.setText("Cliente");
 
         jLabel2.setText("Nome:");
 
@@ -70,19 +80,26 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Nome da Mãe:");
 
-        jLabel8.setText("Estado:");
-
-        jLabel9.setText("Cidade:");
+//        jLabel8.setText("Estado:");
+//
+//        jLabel9.setText("Cidade:");
 
         jLabel10.setText("Endereço:");
 
         jLabel11.setText("Telefone:");
 
-        jLabel12.setText("Plano:");
+        jLabel12.setText("Plano 1,2 ou 3:");
 
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
+                try {
+                    Cliente c = new Cliente(jLabel2.getText(), jLabel3.getText(), jLabel4.getText(), jLabel5.getText(),
+                            jLabel6.getText(), jLabel7.getText(), jLabel10.getText(), jLabel11.getText(), Plano.planosPadrao.get(jLabel12.getText()));
+                    sistema.cadastrarCliente(c);
+                } catch (ClienteJaCadastradoException e) {
+                    JOptionPane.showMessageDialog();
+                }
             }
         });
 

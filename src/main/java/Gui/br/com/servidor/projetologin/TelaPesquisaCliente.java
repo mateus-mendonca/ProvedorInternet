@@ -85,7 +85,7 @@ public class TelaPesquisaCliente extends javax.swing.JInternalFrame {
         );
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Pesquisar Cliente");
+        jLabel1.setText("Pesquisar br.ufpb.dcx.Mateus.Cliente");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("CPF:");

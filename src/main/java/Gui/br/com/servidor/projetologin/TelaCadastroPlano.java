@@ -42,9 +42,9 @@ public class TelaCadastroPlano extends javax.swing.JInternalFrame {
         jButton2.setText("Salvar");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setText("Cadastrar Plano");
+        jLabel5.setText("Cadastrar br.ufpb.dcx.Mateus.Plano");
 
-        jLabel6.setText("Nome do Plano:");
+        jLabel6.setText("Nome do br.ufpb.dcx.Mateus.Plano:");
 
         jLabel7.setText("Qualidade:");
 

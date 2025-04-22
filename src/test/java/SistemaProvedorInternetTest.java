@@ -1,5 +1,6 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import br.ufpb.dcx.Mateus.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +32,7 @@ public class SistemaProvedorInternetTest {
             Cliente a = sistema.pesquisaCliente("99999999999");
             assertEquals("Mateus", a.getNome());
             assertEquals("99999999999", a.getCpf());
-        } catch ( ClienteJaCadastradoException | ClienteNaoExisteException e) {
+        } catch (ClienteJaCadastradoException | ClienteNaoExisteException e) {
             fail("Não deveria lançar exceção.");
         }
     }
@@ -58,15 +59,15 @@ public class SistemaProvedorInternetTest {
 
     @Test
     void testGerarPagamento() {
-        sistema.gerarPagamento("Plano Intermediário");
+        sistema.gerarPagamento("br.ufpb.dcx.Mateus.Plano Intermediário");
         assertTrue(Plano.planosPadrao.get(1).getPreco() == 99.9);
 
     }
 
     @Test
     void testAlterarNomePlano() {
-        sistema.alterarNomePlano("Plano Básico", "Plano Padrão");
-        assertEquals("Plano Padrão", Plano.planosPadrao.get(0).getNome());
+        sistema.alterarNomePlano("br.ufpb.dcx.Mateus.Plano Básico", "br.ufpb.dcx.Mateus.Plano Padrão");
+        assertEquals("br.ufpb.dcx.Mateus.Plano Padrão", Plano.planosPadrao.get(0).getNome());
     }
 
     @Test
